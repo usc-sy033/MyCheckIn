@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyCheckins</string>
+    <string name="check_title_hint">Enter a title for the checkin.</string>
+    <string name="check_title_label">Title</string>
+    <string name="check_details_hint">Enter details for the checkin.</string>
+    <string name="check_details_label">Details</string>
+    <string name="check_place_hint">Enter a place for the checkin</string>
+    <string name="check_place_label">Place</string>
 </resources>
