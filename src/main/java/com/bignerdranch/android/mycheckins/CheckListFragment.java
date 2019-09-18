@@ -1,9 +1,12 @@
 package com.bignerdranch.android.mycheckins;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -34,9 +37,35 @@ public class CheckListFragment extends Fragment {
         mCheckRecyclerView.setAdapter(mAdapter);
     }
 
-    private class CheckHolder extends RecyclerView.ViewHolder {
+    private class CheckHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
+        private Check mCheck;
+
+        private TextView mTitleTextView;
+        private TextView mDateTextView;
+        private TextView mPlaceTextView;
+
         public CheckHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.list_item_check, parent, false));
+            itemView.setOnClickListener(this);
+
+            mTitleTextView = (TextView) itemView.findViewById(R.id.check_title);
+            mDateTextView = (TextView) itemView.findViewById(R.id.check_date);
+            mPlaceTextView = (TextView) itemView.findViewById(R.id.check_place);
+        }
+
+        public void bind(Check check) {
+            mCheck = check;
+            mTitleTextView.setText(mCheck.getTitle());
+            mDateTextView.setText(mCheck.getDate().toString());
+            mPlaceTextView.setText(mCheck.getPlace());
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = CheckinActivity.newIntent(getActivity(), mCheck.getId());
+            startActivity(intent);
         }
     }
 
@@ -56,7 +85,8 @@ public class CheckListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull CheckHolder holder, int position) {
-
+            Check check = mChecks.get(position);
+            holder.bind(check);
         }
 
         @Override
