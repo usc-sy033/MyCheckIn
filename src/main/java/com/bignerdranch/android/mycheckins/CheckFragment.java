@@ -35,7 +35,7 @@ public class CheckFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCheck = new Check();
+        //mCheck = new Check();
         UUID checkId = (UUID) getArguments().getSerializable(ARG_CHECK_ID);
         mCheck = CheckLab.get(getActivity()).getCheck(checkId);
     }

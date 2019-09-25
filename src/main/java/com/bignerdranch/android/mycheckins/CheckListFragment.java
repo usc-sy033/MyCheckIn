@@ -30,11 +30,21 @@ public class CheckListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+    }
+
     private void updateUI() {
         CheckLab checkLab = CheckLab.get(getActivity());
         List<Check> checks = checkLab.getChecks();
-        mAdapter = new CheckAdapter(checks);
-        mCheckRecyclerView.setAdapter(mAdapter);
+        if (mAdapter == null) {
+            mAdapter = new CheckAdapter(checks);
+            mCheckRecyclerView.setAdapter(mAdapter);
+        } else {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private class CheckHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
