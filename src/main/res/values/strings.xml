@@ -6,4 +6,5 @@
     <string name="check_details_label">Details</string>
     <string name="check_place_hint">Enter a place for the checkin</string>
     <string name="check_place_label">Place</string>
+    <string name="date_picker_title">Date of checkin:</string>
 </resources>

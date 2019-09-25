@@ -10,12 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.UUID;
 
 public class CheckFragment extends Fragment {
 
     private static final String ARG_CHECK_ID = "check_id";
+    private static final String DIALOG_DATE = "DialogDate";
 
     private Check mCheck;
     private EditText mTitleField;
@@ -104,7 +106,14 @@ public class CheckFragment extends Fragment {
 
         mDateButton = (Button) v.findViewById(R.id.check_date);
         mDateButton.setText(mCheck.getDate().toString());
-        mDateButton.setEnabled(false);
+        mDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.show(manager, DIALOG_DATE);
+            }
+        });
 
 
 
